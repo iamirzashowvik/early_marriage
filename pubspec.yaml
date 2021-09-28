@@ -1,0 +1,35 @@
+name: early_marriage
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  font_awesome_flutter: ^9.1.0
+  webview_flutter: ^2.0.10
+  get: 4.3.5
+  flutter:
+    sdk: flutter
+  cloud_firestore: ^2.5.0
+  firebase_core:
+  dio: ^4.0.0
+  date_time_picker: ^2.1.0
+  intl: any
+  cached_network_image: ^3.1.0
+  location: ^4.3.0
+  access_settings_menu: ^0.0.1
+  geolocator: ^7.2.0+1
+  android_intent: ^2.0.2
+  url_launcher: ^6.0.10
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
