@@ -21,8 +21,10 @@ class WebViewExampleState extends State<WebViewExample> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: WebView(
-        initialUrl: widget.web,
+      child: Scaffold(
+        body: WebView(
+          initialUrl: widget.web,
+        ),
       ),
     );
   }

@@ -34,14 +34,16 @@ class _ActionXState extends State<ActionX> {
   var currentLocation;
   var lat, lng;
   Future<void>? _launched;
-  String _phone = '999';Future<void> _makePhoneCall(String url) async {
+  String _phone = '999';
+  Future<void> _makePhoneCall(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
       throw 'Could not launch $url';
     }
   }
-  bool x=false;
+
+  bool x = false;
   Future<Position> determinePosition() async {
     //  await Geolocator.openAppSettings();
 
@@ -85,10 +87,10 @@ class _ActionXState extends State<ActionX> {
     print(g.latitude);
     //print(await Geolocator.requestPermission());
     print(await Geolocator.isLocationServiceEnabled());
-   setState(() {
-     lat = g.latitude;
-     lng = g.longitude;
-   });
+    setState(() {
+      lat = g.latitude;
+      lng = g.longitude;
+    });
     print(lat);
 
     return await Geolocator.getCurrentPosition();
@@ -125,164 +127,168 @@ class _ActionXState extends State<ActionX> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body:lat==null?Center(child: CircularProgressIndicator()): Form(
-          key: validatekey,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                TFF(nid, 'National ID number', TextInputType.phone),
-             //   TFFg(phone, 'Phone number', TextInputType.phone),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: DateTimePicker(
-                      initialValue: '',
-                      firstDate: DateTime(1950),
-                      lastDate: DateTime(2100),
-                      dateLabelText: 'Date',
-                      onChanged: (val) {
-                        setState(() {
-                          date = val;
-                        });
-                      },
-                      validator: (val) {
-                        print(val);
-                        return null;
-                      },
-                      onSaved: (val) => print(val),
-                    ),
-                  ),
-                ),
-                DropdownButton<String>(
-                  hint: Text(
-                    gender,
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  items: <String>['female', 'male'].map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: new Text(
-                        value,
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      gender = value!;
-                      if (gender == 'male') {
-                        limit = 21;
-                      } else {
-                        limit = 18;
-                      }
-                    });
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
-                    onTap: () async {
-                      print('gggggggggggggg');
-                      // print(nid.toString().isNum);
-                      // print(nid.toString().isPhoneNumber);
-                      // print(nid.toString().isNumericOnly);
-                      // print(nid);
-                      // print(nid.toString().isNum);
-
-                      print(isNumeric(nid.text));
-                      print('gggggggggggggg');
-                      print(checkplusminus(nid.text));
-                      print('gggggggggggggg');
-                      if (validatekey.currentState!.validate() &&
-                          isNumeric(nid.text) &&
-                          checkplusminus(nid.text)) {
-                        if (date == '') {
-                          Get.snackbar('Insert', 'date ');
-                        } else if (gender == 'Gender') {
-                          Get.snackbar('Insert', ' gender');
-                        } else {
-                          // Get.snackbar('Insert', 'gg');
-                          final difference = daysBetween(DateTime.parse(date),
-                              DateTime.parse(formattedDate));
-                          print(difference);
-
-                          if (difference / 365 >= limit) {
-                            Get.snackbar('congo', 'you are verified');
-                            firestoreInstance.collection("users").add({
-                              'nid': nid.text,
-                              'dateOfBirth': date,
-                              'varified': true,
-                            //  'phone': phone.text,
-                              'lat': lat,
-                              'lng': lng
-                            }).then((value) {
-                              print(value.id);
-                            });
-                          } else {
-                            firestoreInstance.collection("users").add({
-                              'nid': nid.text,
-                              'dateOfBirth': date,
-                              'varified': false,
-                            //  'phone': phone.text,
-                              'lat': lat,
-                              'lng': lng
-                            }).then((value) {
-                              print(value.id);
-                            });
-                            Get.snackbar('invalid', 'you are not verified');
-                          }
-                        }
-                      } else {
-                        Get.snackbar('wrong NID', 'Try Again');
-                      }
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.black,
-                      ),
-                      width: MediaQuery.of(context).size.width,
-                      child: Padding(
+        body: lat == null
+            ? Center(child: CircularProgressIndicator())
+            : Form(
+                key: validatekey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TFF(nid, 'National ID number', TextInputType.phone),
+                      //   TFFg(phone, 'Phone number', TextInputType.phone),
+                      Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Center(
-                          child: Text(
-                            'Verify',
-                            style: TextStyle(
-                                fontFamily: 'Gilroy',
-                                fontSize: 20,
-                                color: Colors.white),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: DateTimePicker(
+                            initialValue: '',
+                            firstDate: DateTime(1950),
+                            lastDate: DateTime(2100),
+                            dateLabelText: 'Date',
+                            onChanged: (val) {
+                              setState(() {
+                                date = val;
+                              });
+                            },
+                            validator: (val) {
+                              print(val);
+                              return null;
+                            },
+                            onSaved: (val) => print(val),
                           ),
                         ),
                       ),
-                    ),
+                      DropdownButton<String>(
+                        hint: Text(
+                          gender,
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        items: <String>['female', 'male'].map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: new Text(
+                              value,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            gender = value!;
+                            if (gender == 'male') {
+                              limit = 21;
+                            } else {
+                              limit = 18;
+                            }
+                          });
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () async {
+                            print('gggggggggggggg');
+                            // print(nid.toString().isNum);
+                            // print(nid.toString().isPhoneNumber);
+                            // print(nid.toString().isNumericOnly);
+                            // print(nid);
+                            // print(nid.toString().isNum);
+
+                            print(isNumeric(nid.text));
+                            print('gggggggggggggg');
+                            print(checkplusminus(nid.text));
+                            print('gggggggggggggg');
+                            if (validatekey.currentState!.validate() &&
+                                isNumeric(nid.text) &&
+                                checkplusminus(nid.text)) {
+                              if (date == '') {
+                                Get.snackbar('Insert', 'date ');
+                              } else if (gender == 'Gender') {
+                                Get.snackbar('Insert', ' gender');
+                              } else {
+                                // Get.snackbar('Insert', 'gg');
+                                final difference = daysBetween(
+                                    DateTime.parse(date),
+                                    DateTime.parse(formattedDate));
+                                print(difference);
+
+                                if (difference / 365 >= limit) {
+                                  Get.snackbar('congo', 'you are verified');
+                                  firestoreInstance.collection("users").add({
+                                    'nid': nid.text,
+                                    'dateOfBirth': date,
+                                    'varified': true,
+                                    //  'phone': phone.text,
+                                    'lat': lat,
+                                    'lng': lng
+                                  }).then((value) {
+                                    print(value.id);
+                                  });
+                                } else {
+                                  firestoreInstance.collection("users").add({
+                                    'nid': nid.text,
+                                    'dateOfBirth': date,
+                                    'varified': false,
+                                    //  'phone': phone.text,
+                                    'lat': lat,
+                                    'lng': lng
+                                  }).then((value) {
+                                    print(value.id);
+                                  });
+                                  Get.snackbar(
+                                      'invalid', 'you are not verified');
+                                }
+                              }
+                            } else {
+                              Get.snackbar('wrong NID', 'Try Again');
+                            }
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.black,
+                            ),
+                            width: MediaQuery.of(context).size.width,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Text(
+                                  'Verify',
+                                  style: TextStyle(
+                                      fontFamily: 'Gilroy',
+                                      fontSize: 20,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: GestureDetector(
+                      //     onTap: () {
+                      //       firestoreInstance
+                      //           .collection("sos")
+
+                      //           .add({'lat': lat, 'lng': lng}).then((value) {
+                      //         print(value.id);
+                      //         setState(() {
+                      //           _launched = _makePhoneCall('tel:999');
+                      //         });
+                      //       });
+                      //     },
+                      //     child: CircleAvatar(
+                      //       backgroundColor: Colors.black,
+                      //       radius:50,
+                      //       child: Text('Send SOS'),
+                      //     ),
+                      //   ),
+                      // )
+                    ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      firestoreInstance
-                          .collection("sos")
-
-                          .add({'lat': lat, 'lng': lng}).then((value) {
-                        print(value.id);
-                        setState(() {
-                          _launched = _makePhoneCall('tel:999');
-                        });
-                      });
-                    },
-                    child: CircleAvatar(
-                      backgroundColor: Colors.black,
-                      radius:50,
-                      child: Text('Send SOS'),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
+              ),
       ),
     );
   }

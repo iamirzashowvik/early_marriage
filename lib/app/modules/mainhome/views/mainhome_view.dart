@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:early_marriage/app/model/box.dart';
 import 'package:early_marriage/app/model/webview.dart';
 import 'package:early_marriage/app/modules/mainhome/action.dart';
@@ -28,26 +29,47 @@ class MainhomeView extends GetView<MainhomeController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              GestureDetector(
-                onTap: () {
-                  Get.to(Newsfeed());
-                },
-                child: CategoryXx('Knowledge-Hub',
-                    'https://image.freepik.com/free-vector/education-doodle-concept_98292-6867.jpg'),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(Newsfeed());
+                    },
+                    child: CategoryXx('Knowledge-Hub',
+                        'https://image.freepik.com/free-vector/education-doodle-concept_98292-6867.jpg'),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(QuizHome());
+                    },
+                    child: CategoryXx('Assess knowledge',
+                        'https://image.freepik.com/free-vector/man-with-laptop-passing-online-test-checking-answers-flat-vector-illustration_128772-852.jpg'),
+                  ),
+                ],
               ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(QuizHome());
-                },
-                child: CategoryXx('Assess knowledge',
-                    'https://image.freepik.com/free-vector/man-with-laptop-passing-online-test-checking-answers-flat-vector-illustration_128772-852.jpg'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(ActionX());
-                },
-                child: CategoryXx('Take Actions',
-                    'https://image.freepik.com/free-vector/youth-empowerment-abstract-concept-vector-illustration-children-young-people-take-charge-take-action-improve-life-quality-democracy-building-youth-activism-involvement-abstract-metaphor_335657-4186.jpg'),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(ActionX());
+                    },
+                    child: CategoryXx('Take Actions',
+                        'https://image.freepik.com/free-vector/youth-empowerment-abstract-concept-vector-illustration-children-young-people-take-charge-take-action-improve-life-quality-democracy-building-youth-activism-involvement-abstract-metaphor_335657-4186.jpg'),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        controller.gg();
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: Colors.black,
+                        radius: 50,
+                        child: Text('Send SOS'),
+                      ),
+                    ),
+                  )
+                ],
               )
             ],
           ),
