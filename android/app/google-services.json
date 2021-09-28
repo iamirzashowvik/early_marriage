@@ -1,0 +1,92 @@
+{
+  "project_info": {
+    "project_number": "816001646360",
+    "project_id": "early-marriage-d5c12",
+    "storage_bucket": "early-marriage-d5c12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816001646360:android:470c5401bfe9f986dae86d",
+        "android_client_info": {
+          "package_name": "com.edu.early_marriage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816001646360-d7qmncua6lig1oju7nf210mbogrm3ob1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edu.early_marriage",
+            "certificate_hash": "a6a4b8160342411fe7516f39130ecf18b0e2d2de"
+          }
+        },
+        {
+          "client_id": "816001646360-utgfh4mvaace4vu0176upg7pencoljig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edu.early_marriage",
+            "certificate_hash": "6e798345520b0debf1cde4bc464555c7cc7c140e"
+          }
+        },
+        {
+          "client_id": "816001646360-7057jr75up02vm43ad9qnhtbn9uore09.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjSneMO6ObxFFc_tglkK1zweCrcc4n3hg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816001646360-7057jr75up02vm43ad9qnhtbn9uore09.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816001646360:android:6553d71909241895dae86d",
+        "android_client_info": {
+          "package_name": "com.example.early_marriage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816001646360-is00olmg4pah1bchhgdfvkcdgnj5kr2h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.early_marriage",
+            "certificate_hash": "6e798345520b0debf1cde4bc464555c7cc7c140e"
+          }
+        },
+        {
+          "client_id": "816001646360-7057jr75up02vm43ad9qnhtbn9uore09.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjSneMO6ObxFFc_tglkK1zweCrcc4n3hg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816001646360-7057jr75up02vm43ad9qnhtbn9uore09.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
